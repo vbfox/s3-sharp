@@ -25,7 +25,7 @@ namespace BlackFox.S3
 
                     XmlDocument bucketXml = response.StreamResponseToXmlDocument();
 
-                    return S3Utils.SelectNodes(bucketXml, "//s3:Bucket").Select(n => new S3Bucket(this, n));
+                    return bucketXml.SelectS3Nodes("//s3:Bucket").Select(n => new S3Bucket(this, n));
                 }
                 finally
                 {

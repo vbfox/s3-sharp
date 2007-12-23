@@ -6,9 +6,9 @@ using System.Xml;
 
 namespace BlackFox.S3
 {
-    public static class S3Utils
+    static class S3Utils
     {
-        public static IEnumerable<XmlNode> SelectNodes(XmlNode node, string xpath)
+        public static IEnumerable<XmlNode> SelectS3Nodes(this XmlNode node, string xpath)
         {
             foreach (XmlNode selectedNode in node.SelectNodes(xpath, GetNS(node)))
             {
@@ -16,29 +16,34 @@ namespace BlackFox.S3
             }
         }
 
-        public static XmlNode SelectSingleNode(XmlNode node, string xpath)
+        public static XmlNode SelectSingleS3Node(this XmlNode node, string xpath)
         {
             return node.SelectSingleNode(xpath, GetNS(node));
         }
 
-        public static string SelectSingleString(XmlNode node, string xpath)
+        public static string SelectSingleS3String(this XmlNode node, string xpath)
         {
-            return SelectSingleNode(node, xpath).InnerXml;
+            return node.SelectSingleS3Node(xpath).InnerXml;
         }
 
-        public static XmlNamespaceManager GetNS(XmlNode node)
+        public static DateTime SelectSingleS3Date(this XmlNode node, string xpath)
+        {
+            return ParseDate(node.SelectSingleS3String(xpath));
+        }
+
+        static XmlNamespaceManager GetNS(XmlNode node)
         {
             return node.OwnerDocument == null ? GetNS((XmlDocument)node) : GetNS(node.OwnerDocument);
         }
 
-        public static XmlNamespaceManager GetNS(XmlDocument doc)
+        static XmlNamespaceManager GetNS(XmlDocument doc)
         {
             XmlNamespaceManager ns = new XmlNamespaceManager(doc.NameTable);
             ns.AddNamespace("s3", @"http://s3.amazonaws.com/doc/2006-03-01/");
             return ns;
         }
 
-        public static DateTime ParseDate(string dateString)
+        static DateTime ParseDate(string dateString)
         {
             return DateTime.ParseExact(dateString, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffK",
                             System.Globalization.CultureInfo.InvariantCulture);

@@ -18,9 +18,8 @@ namespace BlackFox.S3
         internal S3Bucket(S3Connection connection, XmlNode node)
             : base(connection)
         {
-            m_name = S3Utils.SelectSingleString(node, "s3:Name");
-            var creationDateStr = S3Utils.SelectSingleString(node, "s3:CreationDate");
-            m_creationDate = S3Utils.ParseDate(creationDateStr);
+            m_name = node.SelectSingleS3String("s3:Name");
+            m_creationDate = node.SelectSingleS3Date("s3:CreationDate");
         }
 
         public IEnumerable<S3Object> Keys
@@ -60,16 +59,16 @@ namespace BlackFox.S3
                         }
                         response = Service.BucketList(request);
 
-                        XmlNode responseNode = S3Utils.SelectSingleNode(response.StreamResponseToXmlDocument(), "/s3:ListBucketResult");
+                        XmlNode responseNode = response.StreamResponseToXmlDocument().SelectSingleS3Node("/s3:ListBucketResult");
 
-                        foreach (var objNode in S3Utils.SelectNodes(responseNode, "s3:Contents"))
+                        foreach (var objNode in responseNode.SelectS3Nodes("s3:Contents"))
                         {
                             S3Object obj = new S3Object(Connection, objNode);
                             yield return obj;
                             marker = obj.Key;
                         }
 
-                        isTruncated = bool.Parse(S3Utils.SelectSingleString(responseNode, "s3:IsTruncated"));
+                        isTruncated = bool.Parse(responseNode.SelectSingleS3String("s3:IsTruncated"));
                     }
                 }
                 finally
