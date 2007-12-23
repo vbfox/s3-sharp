@@ -25,10 +25,10 @@ namespace BlackFox.S3
         internal S3Object(S3Connection connection, XmlNode node)
             : base(connection)
         {
-            m_key = S3Utils.SelectSingleString(node, "s3:Key");
-            m_eTag = S3Utils.SelectSingleString(node, "s3:ETag");
-            m_size = int.Parse(S3Utils.SelectSingleString(node, "s3:Size"));
-            m_lastModified = S3Utils.ParseDate(S3Utils.SelectSingleString(node, "s3:LastModified"));
+            m_key = node.SelectSingleS3String("s3:Key");
+            m_eTag = node.SelectSingleS3String("s3:ETag");
+            m_size = int.Parse(node.SelectSingleS3String("s3:Size"));
+            m_lastModified = node.SelectSingleS3Date("s3:LastModified");
         }
 
         public override string ToString()
