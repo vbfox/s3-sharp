@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Affirma.ThreeSharp", "Affirma.ThreeSharp\Affirma.ThreeSharp.csproj", "{1A12C68D-7C3B-46A6-8406-10ADCFA51B7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestS3", "TestS3\TestS3.csproj", "{D40FE582-A0F7-47EA-811E-6CDB45692E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackFox.S3", "BlackFox.S3\BlackFox.S3.csproj", "{5C061CBD-CF8C-46AA-8BF9-AC4CDCF2023D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A12C68D-7C3B-46A6-8406-10ADCFA51B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A12C68D-7C3B-46A6-8406-10ADCFA51B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A12C68D-7C3B-46A6-8406-10ADCFA51B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A12C68D-7C3B-46A6-8406-10ADCFA51B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D40FE582-A0F7-47EA-811E-6CDB45692E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D40FE582-A0F7-47EA-811E-6CDB45692E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D40FE582-A0F7-47EA-811E-6CDB45692E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D40FE582-A0F7-47EA-811E-6CDB45692E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C061CBD-CF8C-46AA-8BF9-AC4CDCF2023D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C061CBD-CF8C-46AA-8BF9-AC4CDCF2023D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C061CBD-CF8C-46AA-8BF9-AC4CDCF2023D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C061CBD-CF8C-46AA-8BF9-AC4CDCF2023D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
