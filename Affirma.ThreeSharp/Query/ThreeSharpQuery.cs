@@ -179,7 +179,7 @@ namespace Affirma.ThreeSharp.Query
             {
                 HttpWebRequest httpWebRequest = GenerateAndSendHttpWebRequest(request);
                 HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
-
+                
                 response = new T();
                 response.DataStream = httpWebResponse.GetResponseStream();
                 response.BucketName = request.BucketName;
@@ -258,6 +258,7 @@ namespace Affirma.ThreeSharp.Query
             return httpWebRequest;
         }
 
+
         /// <summary>
         /// Checks for presense of the Errors in the response
         /// If errors found, constructs and throws ThreeSharpException
@@ -320,6 +321,8 @@ namespace Affirma.ThreeSharp.Query
             httpWebRequest.Timeout = request.Timeout;
             httpWebRequest.ContentType = request.ContentType;
             httpWebRequest.ContentLength = request.BytesTotal;
+            if (this.config.Proxy != null)
+                httpWebRequest.Proxy = this.config.Proxy;
 
             AddHeaders(httpWebRequest, request.Headers);
             AddMetadataHeaders(httpWebRequest, request.MetaData);

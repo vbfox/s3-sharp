@@ -27,8 +27,10 @@ namespace Affirma.ThreeSharp.Model
     /// The base class for Affirma.ThreeSharp.Model.Request and Affirma.ThreeSharp.Model.Response.
     /// Also used for statistical purposes.
     /// </summary>
-    public class Transfer
+    public class Transfer : IDisposable
     {
+        private bool isDisposed = false;
+
         private string id;
 
         protected Stream dataStream;
@@ -47,6 +49,30 @@ namespace Affirma.ThreeSharp.Model
             this.id = System.Guid.NewGuid().ToString();
 
             this.headers = new SortedList();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.isDisposed)
+            {
+                if (disposing)
+                {
+                    if (dataStream != null)
+                        dataStream.Dispose();
+                }
+                this.isDisposed = true;
+            }
+        }
+
+        ~Transfer()
+        {
+            Dispose(false);
+            GC.SuppressFinalize(this);
         }
 
         public String ID

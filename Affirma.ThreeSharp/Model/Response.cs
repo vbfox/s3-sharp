@@ -70,11 +70,11 @@ namespace Affirma.ThreeSharp.Model
 
         public void StreamResponseToFile(String localfile)
         {
-            FileStream fileStream = File.OpenWrite(localfile);
+            using (FileStream fileStream = File.OpenWrite(localfile))
+            {
+                this.TransferStream(this.dataStream, fileStream);
+            }
 
-            this.TransferStream(this.dataStream, fileStream);
-
-            fileStream.Close();
             this.dataStream.Close();
         }
 

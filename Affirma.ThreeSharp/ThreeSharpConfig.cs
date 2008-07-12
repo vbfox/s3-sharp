@@ -38,6 +38,8 @@ namespace Affirma.ThreeSharp
 
         private int connectionLimit = 10;
 
+        private System.Net.IWebProxy proxy = null;
+
         public String Server
         {
             get { return this.server; }
@@ -84,5 +86,12 @@ namespace Affirma.ThreeSharp
             get { return this.connectionLimit; }
             set { this.connectionLimit = value; }
         }
+
+        public System.Net.IWebProxy Proxy
+        {
+            get { return this.proxy; }
+            set { this.proxy = value; }
+        }
+
     }
 }
