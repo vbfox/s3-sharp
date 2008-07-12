@@ -106,6 +106,7 @@ namespace Affirma.ThreeSharp.Model
 
             // The encryption algorithm can pad the data by a few bytes, so this line corrects for that.
             this.BytesTotal = Convert.ToInt64(Math.Ceiling(Convert.ToDouble(this.BytesTotal) / 8.0) * 8.0);
+            this.BytesTotal = this.BytesTotal > 0L ? this.BytesTotal : 8L; 
         }
 
     }
